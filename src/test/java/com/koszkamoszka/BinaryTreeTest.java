@@ -34,6 +34,23 @@ public class BinaryTreeTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("binaryTreesAndComparisonResults")
+    void testEqualsReturnsCorrectResult(BinaryTree tree, BinaryTree otherTree, boolean expectedEqual) {
+        boolean actualEqual = tree.equals(otherTree);
+        Assertions.assertEquals(expectedEqual, actualEqual);
+    }
+
+    private static List<Arguments> binaryTreesAndComparisonResults() {
+        return List.of(
+                Arguments.of(singleNodeTree(), singleNodeTree(), true),
+                Arguments.of(singleNodeTree(), null, false),
+                Arguments.of(multiNodeTree(), multiNodeTree(), true),
+                Arguments.of(multiNodeTree(), null, false),
+                Arguments.of(singleNodeTree(), multiNodeTree(), false)
+        );
+    }
+
     private static BinaryTree singleNodeTree() {
         Node singleRootNode = new Node(5);
         return new BinaryTree(singleRootNode);

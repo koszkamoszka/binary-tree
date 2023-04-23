@@ -47,4 +47,11 @@ public class BinaryTree {
         return Math.max(heightLeft, heightRight) + 1;
     }
 
+    public boolean equals(BinaryTree other) {
+        if (other == null) {
+            return false;
+        }
+        return root.equals(other.root);
+    }
+
 }
